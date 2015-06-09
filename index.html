@@ -46,14 +46,14 @@
 
         for (var i = 0; i < localStorage.length - 1; i++) {           
             //writer.write('');
-            writer.write('/*------------------------------');
-            writer.seek(writer.length);
+            //writer.write('/*------------------------------');
+            //writer.seek(writer.length);
 
-            writer.write(localStorage.key(i).toString());
-            writer.seek(writer.length);
+            //writer.write(localStorage.key(i).toString());
+            //writer.seek(writer.length);
 
-            writer.write('------------------------------*/');
-            writer.seek(writer.length);
+            //writer.write('------------------------------*/');
+            //writer.seek(writer.length);
 
             writer.write(localStorage.getItem(localStorage.key(i)).toString());
             writer.seek(writer.length);
