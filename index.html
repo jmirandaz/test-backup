@@ -42,10 +42,10 @@
         alert('ini save lista recursos tablet');
 
         for (var i = 0; i < localStorage.length; i++) {           
-            writer.writer('');
-            writer.writer('------------------------------')
-            writer.writer('-Key: ' + localStorage.key(i));
-            writer.writer('------------------------------')
+            writer.write('');
+            writer.write('------------------------------')
+            writer.write('-Key: ' + localStorage.key(i));
+            writer.write('------------------------------')
             writer.write(localStorage.getItem(i));
         };
 
