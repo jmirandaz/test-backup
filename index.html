@@ -41,7 +41,10 @@
 
         alert('ini save lista recursos tablet: ' + localStorage.length.toString());
 
-        for (var i = 0; i < localStorage.length; i++) {           
+        alert(localStorage.key(1).toString());
+        alert(localStorage.getItem(localStorage.key(0)).toString());
+
+        for (var i = 0; i < localStorage.length - 1; i++) {           
             //writer.write('');
             writer.write('/*------------------------------');
             writer.write(localStorage.key(i).toString());
