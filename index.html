@@ -44,11 +44,9 @@
 
         //alert(localStorage.getItem(localStorage.key(0)).toString());
 
-        
-        var nrox = localStorage.length;    
-        var keyx = '';
+    
 
-        for (var i = 0; i < nrox; i++) {           
+        for (var i = 0; i < localStorage.length; i++) {           
             //writer.write('');
             //writer.write('/*------------------------------');
             //writer.seek(writer.length);
@@ -62,9 +60,11 @@
             //writer.write(i.toString());
             //writer.seek(writer.length);
             
-            keyx = localStorage.key(i).toString();
+            var keyx = localStorage.key(i).toString();
 
-            writer.seek(writer.length);    
+            if (i==0)
+                writer.seek(writer.length);    
+            
             writer.write(localStorage.getItem(keyx);
             
             
