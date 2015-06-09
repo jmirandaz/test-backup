@@ -57,14 +57,14 @@
 
             writer.onwriteend = function(evt){
                 writer.seek(writer.length);
-                writer.write(localStorage.getItem(localStorage.key(1).toString()));
+                writer.write(localStorage.getItem(localStorage.key(9).toString()));
                 writer.onwriteend = function(evt){
                     writer.seek(writer.length);
-                    writer.write(localStorage.getItem(localStorage.key(2).toString()));
+                    writer.write(localStorage.getItem(localStorage.key(5).toString()));
                 }                
             }
 
-            writer.write(localStorage.getItem(localStorage.key(i).toString()));
+            writer.write(localStorage.getItem(localStorage.key(0).toString()));
 
 
 
