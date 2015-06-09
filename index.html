@@ -41,7 +41,14 @@
 
         alert('ini save lista recursos tablet: ' + localStorage.length.toString());
 
-        //alert(localStorage.key(0).toString());
+        alert(localStorage.key(0).toString());
+        alert(localStorage.key(1).toString());
+        alert(localStorage.key(2).toString());
+        alert(localStorage.key(3).toString());
+        alert(localStorage.key(4).toString());
+        alert(localStorage.key(5).toString());
+        alert(localStorage.key(6).toString());
+        
         //alert(localStorage.getItem(localStorage.key(0)).toString());
 
         for (var i = 0; i < localStorage.length - 1; i++) {           
@@ -54,11 +61,14 @@
 
             //writer.write('------------------------------*/');
             //writer.seek(writer.length);
-        
+          
+            writer.write(i.toString());
+            writer.seek(writer.length);
+            
             writer.write(localStorage.getItem(localStorage.key(i)).toString());
             writer.seek(writer.length);
             
-            alert(localStorage.key(i).toString());
+            //alert(localStorage.key(i).toString());
         };
 
         alert('fin save lista recursos tablet');
