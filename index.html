@@ -49,8 +49,8 @@
         for (var i = 0; i < localStorage.length; i++) {           
 
             
-            writer.write(localStorage.getItem(localStorage.key(i).toString());
-            //writer.seek(writer.length);
+            writer.seek(writer.length);
+            writer.write(localStorage.getItem(localStorage.key(i).toString()));
             
             //alert(localStorage.key(i).toString());
         };
@@ -69,8 +69,5 @@
   <body>
     <h1>Backup</h1>
     <p>Prueba de Backup Encuesta</p>
-    <div id='lista'>
-      
-    </div>
   </body>
 </html>
