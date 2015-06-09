@@ -53,11 +53,17 @@
         */
             var i=0;
             writer.seek(writer.length);
-            writer.write(localStorage.getItem(localStorage.key(i).toString()));
 
-            i=1;
-            //writer.seek(writer.length);
             writer.write(localStorage.getItem(localStorage.key(i).toString()));
+            writer.onwriteend = function(evt){
+                writer.write(localStorage.getItem(localStorage.key(1).toString()));
+                writer.onwriteend = function(evt){
+                    writer.write(localStorage.getItem(localStorage.key(2).toString()));
+                }                
+            }
+
+            writer.write('jaime 02');
+
 
         alert('fin save lista recursos tablet');
 
