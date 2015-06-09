@@ -43,10 +43,10 @@
 
         for (var i = 0; i < localStorage.length; i++) {           
             writer.write('');
-            writer.write('------------------------------')
+            writer.write('------------------------------');
             writer.write('-Key: ' + localStorage.key(i));
-            writer.write('------------------------------')
-            writer.write(localStorage.getItem(i));
+            writer.write('------------------------------');
+            writer.write(localStorage.getItem(localStorage.key(i)));
         };
 
         alert('fin save lista recursos tablet');
