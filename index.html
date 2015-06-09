@@ -44,11 +44,11 @@
 
         //alert(localStorage.getItem(localStorage.key(0)).toString());
 
-        writer.seek(writer.length);
-        var nro = localStorage.length;    
-        var key = '';
+        
+        var nrox = localStorage.length;    
+        var keyx = '';
 
-        for (var i = 0; i < nro; i++) {           
+        for (var i = 0; i < nrox; i++) {           
             //writer.write('');
             //writer.write('/*------------------------------');
             //writer.seek(writer.length);
@@ -62,9 +62,10 @@
             //writer.write(i.toString());
             //writer.seek(writer.length);
             
-            key = localStorage.key(i).toString();
-            
-            writer.write(localStorage.getItem(key);
+            keyx = localStorage.key(i).toString();
+
+            writer.seek(writer.length);    
+            writer.write(localStorage.getItem(keyx);
             
             
             //alert(localStorage.key(i).toString());
