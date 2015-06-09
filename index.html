@@ -39,13 +39,13 @@
         */
         
 
-        alert('ini save lista recursos tablet');
+        alert('ini save lista recursos tablet: ' + localStorage.length.toString());
 
         for (var i = 0; i < localStorage.length; i++) {           
-            writer.write('');
-            writer.write('------------------------------');
-            writer.write('-Key: ' + localStorage.key(i));
-            writer.write('------------------------------');
+            //writer.write('');
+            writer.write("------------------------------");
+            writer.write("-Key: " + localStorage.key(i));
+            writer.write("------------------------------");
             writer.write(localStorage.getItem(localStorage.key(i)));
         };
 
@@ -54,7 +54,8 @@
         //writer.write("some sample text");
     }
     function fail(error) {
-        console.log(error.code);
+        //console.log(error.code);
+        alert(error.code);
     }
 
 
