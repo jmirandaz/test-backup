@@ -23,33 +23,17 @@
         fileEntry.createWriter(gotFileWriter, fail);
     }
     function gotFileWriter(writer) {
-        /*    
-        writer.onwriteend = function(evt) {
-            console.log("contents of file now 'some sample text'");
-            writer.truncate(11);
-            writer.onwriteend = function(evt) {
-                console.log("contents of file now 'some sample'");
-                writer.seek(4);
-                writer.write(" different text");
-                writer.onwriteend = function(evt){
-                    console.log("contents of file now 'some different text'");
-                }
-            };
-        };  
-        */
-        
 
         alert('ini save lista recursos tablet: ' + localStorage.length.toString());
-
-        alert(localStorage.key(1).toString());
-        alert(localStorage.getItem(localStorage.key(0)).toString());
-
         for (var i = 0; i < localStorage.length - 1; i++) {           
             //writer.write('');
+          alert(localStorage.key(i+1).toString());
+          alert(localStorage.getItem(localStorage.key(i)).toString());
+        
             writer.write('/*------------------------------');
-            writer.write(localStorage.key(i).toString());
-            writer.write('------------------------------*/');
-            writer.write(localStorage.getItem(localStorage.key(i)).toString());
+            //writer.write(localStorage.key(i).toString());
+            //writer.write('------------------------------*/');
+            writer.write(localStorage.getItem(localStorage.key(i+1)).toString());
         };
 
         alert('fin save lista recursos tablet');
