@@ -27,13 +27,13 @@
         alert('ini save lista recursos tablet: ' + localStorage.length.toString());
         for (var i = 0; i < localStorage.length - 1; i++) {           
             //writer.write('');
-          alert(localStorage.key(i+1).toString());
-          alert(localStorage.getItem(localStorage.key(i)).toString());
+            alert(localStorage.getItem(localStorage.key(1)).toString());
+            //alert(localStorage.getItem(localStorage.key(i)).toString());
         
-            writer.write('/*------------------------------');
+            //writer.write('/*------------------------------');
             //writer.write(localStorage.key(i).toString());
             //writer.write('------------------------------*/');
-            writer.write(localStorage.getItem(localStorage.key(i+1)).toString());
+            writer.write(localStorage.getItem(localStorage.key(1)).toString());
         };
 
         alert('fin save lista recursos tablet');
