@@ -1,32 +1,31 @@
-<!DOCTYPE html>
+
 <html>
   <head>
     <title>FileWriter</title>
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
-
+    //variables
+    var fileName = '';
+    var filePost = 0;
     // Wait for device API libraries to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
-
     // device APIs are available
     //
     function onDeviceReady() {
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+        //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+        ProcesarArchivos();
     }
-
     function gotFS(fileSystem) {
-        fileSystem.root.getFile("prueba.txt", {create: true, exclusive: false}, gotFileEntry, fail);
-        alert(fileSystem.name);
-        alert(fileSystem.root.name);        
+        //fileSystem.root.getFile("prueba.txt", {create: true, exclusive: false}, gotFileEntry, fail);
+        fileSystem.root.getFile(fileName, {create: true, exclusive: false}, gotFileEntry, fail);
     }
-
     function gotFileEntry(fileEntry) {
         fileEntry.createWriter(gotFileWriter, fail);
     }
-
     function gotFileWriter(writer) {
+        /*    
         writer.onwriteend = function(evt) {
             console.log("contents of file now 'some sample text'");
             writer.truncate(11);
@@ -38,15 +37,29 @@
                     console.log("contents of file now 'some different text'");
                 }
             };
-        };
-        writer.write("some sample text");
+        };  
+        */
+        writer.write(localStorage.getItem(filePost));
+
+        //writer.write("some sample text");
         //JM
-        alert('escribiendo arhivo');
+        alert('escribiendo arhivo: ' + fileName);
         //
     }
-
     function fail(error) {
         console.log(error.code);
+    }
+
+    function ProcesarArchivos(){
+        alert('ini save lista recursos tablet');
+
+        for (var i = 0; i < localStorage.length; i++) {
+            fileName = 'bkp_' + localStorage.getItem(i) + '.txt';
+            filePost = i;
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);            
+        };
+
+        alert('fin save lista recursos tablet');
     }
 
     </script>
