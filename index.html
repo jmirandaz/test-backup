@@ -60,12 +60,13 @@
             //writer.write(i.toString());
             //writer.seek(writer.length);
             
-            var keyx = localStorage.key(i).toString();
-
-            if (i==0)
+            /*
+            if (i==0){
                 writer.seek(writer.length);    
-            
-            writer.write(localStorage.getItem(keyx);
+            }
+            */
+            writer.seek(writer.length); 
+            writer.write(localStorage.getItem(localStorage.key(i).toString());
             
             
             //alert(localStorage.key(i).toString());
