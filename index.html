@@ -99,7 +99,7 @@
             alert(fileDat);
             alert($("#btnBack" + key).attr('data-icon'));
 
-            if ($("#btnBack" + key).attr('data-icon') == '')
+            if ($("#btnBack" + key).attr('data-icon') == 'check')
                 return;
 
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
