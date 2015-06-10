@@ -96,8 +96,9 @@
             fileKey = key;
             fileDat = 'bk' + fileFec + '_' + localStorage.key(fileKey).toString() + '.BKP';
 
-            if ($("#btnBack" + key).attr('data-icon') == '')
-                return false;
+//alert(fileDat);
+            //if ($("#btnBack" + key).attr('data-icon') == '')
+                //return false;
 
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 
