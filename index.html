@@ -22,7 +22,7 @@
         //
         function onDeviceReady() {
             //create directory
-            onFSWin();
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSWin, fail);
             //build options
             for (var i = 0; i < localStorage.length; i++) {           
                 //writer.seek(writer.length);
@@ -102,7 +102,7 @@
             <!--<input type='button' data-icon='check' data-icon-pos='right' value='Prueba' data-theme='b'>-->
         </div>
         <div data-role='footer'>
-            Backup: Storage/Emulated/0/MINEDU/backupMINEDU_*.txt
+            Backup: Storage/Emulated/0/backupMINEDU.txt
         </div>
     </div>    
   </body>
