@@ -15,6 +15,7 @@
         //variables
         var fileDat = 'backupMINEDU.txt';
         var fileKey = 0;
+        var fileFec = '';
         // Wait for device API libraries to load
         //
         document.addEventListener('deviceready', onDeviceReady, false);
@@ -61,12 +62,45 @@
             alert(error.code);
         }
 
+        function getDateTime() {
+            var now     = new Date(); 
+            var year    = now.getFullYear();
+            var month   = now.getMonth()+1; 
+            var day     = now.getDate();
+            var hour    = now.getHours();
+            var minute  = now.getMinutes();
+            var second  = now.getSeconds(); 
+            if(month.toString().length == 1) {
+                var month = '0'+month;
+            }
+            if(day.toString().length == 1) {
+                var day = '0'+day;
+            }   
+            if(hour.toString().length == 1) {
+                var hour = '0'+hour;
+            }
+            if(minute.toString().length == 1) {
+                var minute = '0'+minute;
+            }
+            if(second.toString().length == 1) {
+                var second = '0'+second;
+            }   
+            var dateTime = year+'/'+month+'/'+day;//+'_'+hour+':'+minute+':'+second;   
+            return dateTime;
+        }
+
         function startBackup(key){
+            if (fileFec == '')
+                fileFec = getDateTime();
+
             fileKey = key;
-            fileDat = 'backupMINEDU_' + localStorage.key(fileKey).toString() + '.txt';
+            fileDat = 'bk' + fileFec + '_' + localStorage.key(fileKey).toString() + '.BKP';
+
+            if ($("#btnBack" + key).attr('data-icon') == '' || $("#btnBack" + key).attr('data-icon') == null)
+                return false;
+
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 
-            //alert(localStorage.key(fileKey).toString());
             $("#btnBack" + key).parent().addClass('ui-icon-check');
             $("#btnBack" + key).attr('data-icon','check');
         }
@@ -96,13 +130,16 @@
   <body>
     <div data-role='page'>
         <div data-role='header'>
-            Backup - Encuesta MINEDU
+            <h1 role="heading">Backup - Encuesta MINEDU</h1>
         </div>
         <div id='content-page' role='main' class='ui-content'>
+            <div class="ui-body ui-body-a ui-corner-all">
+                Backup generado en formato contiene el formato backupYYYYMMDD_archivo
+            </div>
             <!--<input type='button' data-icon='check' data-icon-pos='right' value='Prueba' data-theme='b'>-->
         </div>
         <div data-role='footer'>
-            Backup: Storage/Emulated/0/backupMINEDU.txt
+            <h4 class="ui-title" role="heading" aria-level="1">Backup: Storage/Emulated/0/MINEDU/bkYYYMMDD_*.BKP</h4>
         </div>
     </div>    
   </body>
