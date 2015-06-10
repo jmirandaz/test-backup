@@ -96,7 +96,7 @@
             fileKey = key;
             fileDat = 'bk' + fileFec + '_' + localStorage.key(fileKey).toString() + '.BKP';
 
-            if ($("#btnBack" + key).attr('data-icon') == '' || $("#btnBack" + key).attr('data-icon') == null)
+            if ($("#btnBack" + key).attr('data-icon') == '')
                 return false;
 
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
@@ -134,7 +134,7 @@
         </div>
         <div id='content-page' role='main' class='ui-content'>
             <div class="ui-body ui-body-a ui-corner-all">
-                Backup generado en formato contiene el formato backupYYYYMMDD_archivo
+                Seleccione los registros a los que desee generar un respaldo
             </div>
             <!--<input type='button' data-icon='check' data-icon-pos='right' value='Prueba' data-theme='b'>-->
         </div>
