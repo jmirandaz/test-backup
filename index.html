@@ -1,86 +1,94 @@
+//VERSION 2
 
 <html>
   <head>
     <title>FileWriter</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <script type="text/javascript" charset="utf-8">
-    //variables
-    var fileData = '';
-    // Wait for device API libraries to load
-    //
-    document.addEventListener("deviceready", onDeviceReady, false);
-    // device APIs are available
-    //
-    function onDeviceReady() {
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-        //ProcesarArchivos();
-    }
-    function gotFS(fileSystem) {
-        fileSystem.root.getFile("backupMINEDU.txt", {create: true, exclusive: false}, gotFileEntry, fail);
-    }
-    function gotFileEntry(fileEntry) {
-        fileEntry.createWriter(gotFileWriter, fail);
-    }
-    function gotFileWriter(writer) {
-        /*    
-        writer.onwriteend = function(evt) {
-            console.log("contents of file now 'some sample text'");
-            writer.truncate(11);
-            writer.onwriteend = function(evt) {
-                console.log("contents of file now 'some sample'");
-                writer.seek(4);
-                writer.write(" different text");
-                writer.onwriteend = function(evt){
-                    console.log("contents of file now 'some different text'");
-                }
+    <script type='text/javascript' charset='utf-8' src='js/jquery-2.1.3.min.js'></script>
+
+    <link rel='stylesheet' id='jquerymobile-css' type='text/css' media='all'   href='jqmobile/jquery.mobile-1.4.5.min.css'/>  
+    <script src='jqmobile/jquery.mobile-1.4.5.min.js'></script>
+
+    <script type='text/javascript' charset='utf-8' src='cordova.js'></script>
+    <script type='text/javascript' charset='utf-8'>
+        //variables
+        var fileDat = '';
+        var fileKey = 0;
+        // Wait for device API libraries to load
+        //
+        document.addEventListener('deviceready', onDeviceReady, false);
+        // device APIs are available
+        //
+        function onDeviceReady() {
+            //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+            //ProcesarArchivos();
+            for (var i = 0; i < localStorage.length; i++) {           
+                //writer.seek(writer.length);
+                //writer.write(localStorage.getItem(localStorage.key(i).toString()));
+                //$('#content-page').append('<div class='ui-btn ui-input-btn ui-btn-b ui-corner-all ui-shadow ui-icon-delete ui-btn-icon-left'>' + localStorage.key(i).toString() + '' data-theme='b'>');
+                $('#content-page').append("<div class='ui-btn ui-input-btn ui-btn-b ui-corner-all ui-shadow ui-btn-icon-right'>" + localStorage.key(i).toString() + "<input id='btnBack" + i.toString() + "' type='button' data-icon='' data-icon-pos='right' data-theme='' onclick='return startBackup("+ i +");'></div>");
             };
-        };  
-        */
 
-        alert('ini save lista recursos tablet: ' + localStorage.length.toString());
+        }
+        function gotFS(fileSystem) {
+            fileSystem.root.getFile('backupMINEDU.txt', {create: true, exclusive: false}, gotFileEntry, fail);
+        }
+        function gotFileEntry(fileEntry) {
+            fileEntry.createWriter(gotFileWriter, fail);
+        }
+        function gotFileWriter(writer) {
 
-        //alert(localStorage.key(0).toString());
+            //alert('ini save lista recursos tablet: ' + localStorage.length.toString());
 
-        //alert(localStorage.getItem(localStorage.key(0)).toString());
-
-    
-        /*
-        for (var i = 0; i < localStorage.length; i++) {           
+        
+            
+            //for (var i = 0; i < localStorage.length; i++) {           
+                //writer.seek(writer.length);
+                //writer.write(localStorage.getItem(localStorage.key(i).toString()));
+              //  $('#content-page').append('<input type='button' data-icon='delete' data-icon-pos='right' value='' + localStorage.key(i).toString() + '' data-theme='b'>');
+            //};
+            
             writer.seek(writer.length);
-            writer.write(localStorage.getItem(localStorage.key(i).toString()));
-        };
-        */
-            var i=0;
-            writer.seek(writer.length);
+            writer.write(localStorage.getItem(localStorage.key(fileKey).toString()));
 
+            //alert('fin save lista recursos tablet');
 
-            writer.onwriteend = function(evt){
-                writer.seek(writer.length);
-                writer.write(localStorage.getItem(localStorage.key(9).toString()));
-                writer.onwriteend = function(evt){
-                    writer.seek(writer.length);
-                    writer.write(localStorage.getItem(localStorage.key(5).toString()));
-                }                
-            }
+        }
+        function fail(error) {
+            //console.log(error.code);
+            alert(error.code);
+        }
 
-            writer.write(localStorage.getItem(localStorage.key(0).toString()));
+        function startBackup(key){
+            fileKey = key;
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 
+            //alert(localStorage.key(fileKey).toString());
+            $("#btnBack" + key).parent().addClass('ui-icon-check');
+            $("#btnBack" + key).attr('data-icon','check');
+        }
+/*
+        $('[id^=btnBack]').live(function(){
+            var id = $(this).attr('id');
+            alert(id);
 
-
-        alert('fin save lista recursos tablet');
-
-    }
-    function fail(error) {
-        //console.log(error.code);
-        alert(error.code);
-    }
-
-
+            return false;
+        });
+*/
     </script>
   </head>
   <body>
-    <h1>Backup</h1>
-    <p>Prueba de Backup Encuesta</p>
+    <div data-role='page'>
+        <div data-role='header'>
+            Backup - Encuesta MINEDU
+        </div>
+        <div id='content-page' role='main' class='ui-content'>
+            <!--<input type='button' data-icon='check' data-icon-pos='right' value='Prueba' data-theme='b'>-->
+        </div>
+        <div data-role='footer'>
+            Backup: Storage/Emulated/0/backupMINEDU.txt
+        </div>
+    </div>    
   </body>
 </html>
