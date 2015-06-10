@@ -21,8 +21,9 @@
         // device APIs are available
         //
         function onDeviceReady() {
-            //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-            //ProcesarArchivos();
+            //create directory
+            onFSWin();
+            //build options
             for (var i = 0; i < localStorage.length; i++) {           
                 //writer.seek(writer.length);
                 //writer.write(localStorage.getItem(localStorage.key(i).toString()));
@@ -32,7 +33,7 @@
 
         }
         function gotFS(fileSystem) {
-            fileSystem.root.getFile(fileDat, {create: true, exclusive: false}, gotFileEntry, fail);
+            fileSystem.root.getFile("MINEDU/" + fileDat, {create: true, exclusive: false}, gotFileEntry, fail);
         }
         function gotFileEntry(fileEntry) {
             fileEntry.createWriter(gotFileWriter, fail);
@@ -69,6 +70,19 @@
             $("#btnBack" + key).parent().addClass('ui-icon-check');
             $("#btnBack" + key).attr('data-icon','check');
         }
+
+        function onFSWin(fileSystem) {
+            fileSystem.root.getDirectory("MINEDU", {create: true, exclusive: false}, getDirectorySuccess, getDirectoryFail);
+        }
+
+        function getDirectorySuccess(parent) {
+            console.log("New Folder or Folder already exists: " + parent.fullPath);
+        }
+
+        function getDirectoryFail(error) {
+            console.log("Unable to create new directory: " + error.code);
+        }
+
 /*
         $('[id^=btnBack]').live(function(){
             var id = $(this).attr('id');
@@ -88,7 +102,7 @@
             <!--<input type='button' data-icon='check' data-icon-pos='right' value='Prueba' data-theme='b'>-->
         </div>
         <div data-role='footer'>
-            Backup: Storage/Emulated/0/backupMINEDU.txt
+            Backup: Storage/Emulated/0/MINEDU/backupMINEDU_*.txt
         </div>
     </div>    
   </body>
